@@ -1,0 +1,57 @@
+Thread pool is a core concept in multithreaded programming which, simply put, represents a collection of idle threads that can be used to execute tasks.
+
+First, let’s outline a frame of reference for multithreading and why we may need to use a thread pool.
+
+A thread is an execution context that can run a set of instructions within a process – aka a running program. Multithreaded programming refers to using threads to execute multiple tasks concurrently. Of course, this paradigm is well supported on the JVM.
+
+Although this brings several advantages, primarily regarding the performance of a program, the multithreaded programming can also have disadvantages – such as increased complexity of the code, concurrency issues, unexpected results and adding the overhead of thread creation.
+
+In this article, we’re going to take a closer look at how the latter issue can be mitigated by using thread pools in Java.
+Why Use a Thread Pool?
+
+Creating and starting a thread can be an expensive process. By repeating this process every time we need to execute a task, we’re incurring a significant performance cost – which is exactly what we were attempting to improve by using threads.
+
+The Java Shell tool (JShell) is an interactive tool for learning the Java programming language and prototyping Java code. JShell is a Read-Evaluate-Print Loop (REPL), which evaluates declarations, statements, and expressions as they are entered and immediately shows the results. The tool is run from the command line.
+
+For a better understanding of the cost of creating and starting a thread, let’s see what the JVM actually does behind the scenes:
+
+it allocates memory for a thread stack that holds a frame for every thread method invocation
+each frame consists of a local variable array, return value, operand stack and constant pool
+some JVMs that support native methods also allocate a native stack
+each thread gets a program counter that tells it what the current instruction executed by the processor is
+the system creates a native thread corresponding to the Java thread
+descriptors relating to the thread are added to the JVM internal data structures
+the threads share the heap and method area
+Of course, the details of all this will depend on the JMV and the operating system.
+
+In addition, more threads mean more work for the system scheduler to decide which thread gets access to resources next.
+
+A thread pool helps mitigate the issue of performance by reducing the number of threads needed and managing their lifecycle.
+
+Essentially, threads are kept in the thread pool until they’re needed, after which they execute the task and return the pool to be reused later. This mechanism is especially helpful in systems that execute a large number of small tasks.
+
+Java Thread Pools
+
+Java provides its own implementations of the thread pool pattern, through objects called executors. These can be used through executor interfaces or directly through thread pool implementations – which does allow for finer-grained control.
+
+The java.util.concurrent package contains the following interfaces:
+
+Executor – a simple interface for executing tasks
+ExecutorService – a more complex interface which contains additional methods for managing the tasks and the executor itself
+ScheduledExecutorService – extends ExecutorService with methods for scheduling the execution of a task
+Alongside these interfaces, the package also provides the Executors helper class for obtaining executor instances, as well as implementations for these interfaces.
+
+Generally, a Java thread pool is composed of:
+
+the pool of worker threads, responsible for managing the threads
+a thread factory that is responsible for creating new threads
+a queue of tasks waiting to be executed
+In the following sections, let’s see how the Java classes and interfaces that provide support for thread pools work in more detail.
+The Internet of things (IoT) is the network of devices such as vehicles, and home appliances that contain electronics, software, sensors, actuators, and connectivity which allows these things to connect, interact and exchange data.[1][2][3][4]
+
+The IoT involves extending Internet connectivity beyond standard devices, such as desktops, laptops, smartphones and tablets, to any range of traditionally dumb or non-internet-enabled physical devices and everyday objects. Embedded with technology, these devices can communicate and interact over the Internet, and they can be remotely monitored and controlled.
+The history of mathematics can be seen as an ever-increasing series of abstractions. The first abstraction, which is shared by many animals,[11] was probably that of numbers: the realization that a collection of two apples and a collection of two oranges (for example) have something in common, namely quantity of their members.
+
+As evidenced by tallies found on bone, in addition to recognizing how to count physical objects, prehistoric peoples may have also recognized how to count abstract quantities, like time – days, seasons, years.[12]
+
+Evidence for more complex mathematics does not appear until around 3000 BC, when the Babylonians and Egyptians began using arithmetic, algebra and geometry for taxation and other financial calculations, for building and construction, and for astronomy.[13] The most ancient mathematical texts from Mesopotamia and Egypt are from 2000–1800 BC. Many early texts mention Pythagorean triples and so, by inference, the Pythagorean theorem seems to be the most ancient and widespread mathematical development after basic arithmetic and geometry. It is in Babylonian mathematics that elementary arithmetic (addition, subtraction, multiplication and division) first appear in the archaeological record. The Babylonians also possessed a place-value system, and used a sexagesimal numeral system, still in use today for measuring angles and time.[14]

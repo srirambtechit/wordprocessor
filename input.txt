@@ -1,0 +1,11 @@
+1|Sriram|JShell
+2|Suresh|Programming
+3|Vignesh|Multithreading
+4|Shankar|JDBC
+5|Kannan|Micro services
+6|Sudha V|Project Management
+7|Dharini|Testing
+8|Kaviya|Automation
+9|Prabhu|Mathematics
+10|Vidhya|IoT
+11|Sudha A|Java Framework
